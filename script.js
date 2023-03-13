@@ -138,7 +138,7 @@ console.log(player2.matrix);
 
   
   let players = [player1, player2];
-  let currentPlayerIndex = Math.floor(Math.random() * players.length);  // Creating a random number btw player1 and player2
+  let currentPlayerIndex = Math.floor(Math.random() * players.length);  // Creating a random number between player1 and player2
   let currentMatrix = players[currentPlayerIndex].matrix;
   
   function canAttack(matrix, y, x) {
