@@ -13,6 +13,7 @@ let player1 = {
     matrix: Array.from({ length: 10 }, () => Array.from({ length: 10 }, () => 0)) // Player Two with array of 10x10 cells
   };
 
+
 let sizes = [4, 3, 2, 1]; // Player Ones ship sizes
 let count = 0;
 
@@ -127,8 +128,8 @@ while (count1 < 10) {
 }
 
 
-console.log(player1.matrix);
-console.log(player2.matrix);
+console.warn(player1.matrix);
+console.error(player2.matrix);
 
 
 
@@ -152,21 +153,27 @@ console.log(player2.matrix);
   function play() {
     let opponentIndex = currentPlayerIndex === 0 ? 1 : 0;   // Generates which player should start the game first
     let opponent = players[opponentIndex];
-  
-    let [y, x] = prompt("Enter the Y and X coordinates at (0-9):").slice(" ");  // Coordinates to attack the ship 
+   
+      if(opponent == player1){
+        [y, x] = prompt("Your'e the Player1, Enter the Y and X coordinates at (0-9):").slice(" ");   // Coordinates to attack the ship
+      }else if(opponent == player2) {
+        [y, x] = prompt("Your'e the Player2, Enter the Y and X coordinates at (0-9):").slice(" ");   // Coordinates to attack the ship
+     
+      }
+    
     
   
     if (canAttack(opponent.matrix, y, x)) {
-      console.log("Hit!");
+      alert("Hit!");
       attack(opponent.matrix, y, x);
-      console.log(player1.matrix);
-      console.log(player2.matrix);
+      console.warn(player1.matrix);
+      console.error(player2.matrix);
     } else {
-      console.log("Miss!");
+      alert("Miss!");
       currentPlayerIndex = opponentIndex;
       currentMatrix = players[currentPlayerIndex].matrix;
-      console.log(player1.matrix);
-      console.log(player2.matrix);
+      console.warn(player1.matrix);
+      console.error(player2.matrix);
     }
   
     let opponentCount = opponent.matrix.reduce((acc, row) => {
@@ -174,7 +181,7 @@ console.log(player2.matrix);
     }, 0);
   
     if (opponentCount === 0) {
-      console.log("Game over! " + players[currentPlayerIndex].name + " wins!"); // If in some of the board there are no 1's at all opposite team wins
+      alert("Game over! " + players[currentPlayerIndex].name + " wins!"); // If in some of the board there are no 1's at all opposite team wins
       return;
     }
   
